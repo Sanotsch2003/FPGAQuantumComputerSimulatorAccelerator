@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 03/17/2024 06:54:19 PM
+-- Create Date: 03/17/2024 08:06:09 PM
 -- Design Name: 
--- Module Name: Timer - Behavioral
+-- Module Name: UARTTransmitter - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,11 +31,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity UARTInterface is
+entity UARTTransmitter is
 --  Port ( );
-end UARTInterface;
+end UARTTransmitter;
 
-architecture Behavioral of UARTInterface is
+architecture Behavioral of UARTTransmitter is
 
 begin
 
