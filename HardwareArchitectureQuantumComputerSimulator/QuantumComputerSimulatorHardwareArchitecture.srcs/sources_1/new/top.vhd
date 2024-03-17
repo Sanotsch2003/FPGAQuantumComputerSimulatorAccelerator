@@ -24,6 +24,7 @@ end top;
 architecture Behavioral of top is
 
     --declare components
+    
     component ClockGenerator
         port
          (-- Clock in ports
@@ -35,9 +36,20 @@ architecture Behavioral of top is
           locked            : out    std_logic;
           clk_in           : in     std_logic
          );
-        end component;
+     end component;
+        
+     component Timer is
+        Port ( 
+            clk : in std_logic;
+            count_en : in std_logic;
+            reset : in std_logic;
+            seg: out std_logic_vector(6 downto 0);
+            an: out std_logic_vector(3 downto 0);
+            overflow: out std_logic_vector(15 downto 0)
+            );
+     end component;
           
-    --signals 
+    --signals (unique Input signals to components are organized into groups, general multiused signals like clocks are also organized into groups)
     
     --clocks
     signal w_clk_100 : std_logic;
@@ -46,6 +58,10 @@ architecture Behavioral of top is
     
     --reset
     signal w_main_reset : std_logic;
+    
+    --Timer
+    signal w_timer_count_en : std_logic;
+    
     
 
 begin
@@ -60,6 +76,17 @@ begin
                -- Clock in ports
                clk_in => system_clk
              );
+    
+    Timer_inst : Timer
+        port map(
+            clk => w_clk_100,
+            count_en => w_timer_count_en,
+            reset => w_main_reset,
+            seg => seg,
+            an => an,
+            overflow => led
+            );
+            
 
     
 end Behavioral;
