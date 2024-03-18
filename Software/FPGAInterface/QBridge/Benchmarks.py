@@ -1,7 +1,7 @@
-from classes.quantumCircuits import QiskitQCSimulator, CustomQCSimulator, FPGAQCCompiler, QuantumCircuit
+from Simulation import QiskitQCSimulator, CustomQCSimulator, FPGAQCCompiler, QuantumCircuit
 import numpy as np
 
-def Benchmark(circuit="random", nRandomGates=100, possibleGates=["h", "cnot", "x", "t", "ccnot"], nQubits=3, printStateVector=False, printCircuit=False, printRunTimes = False, runQiskit=True, runCustom=True, saveFPGAProgram=False, FPGAProgramName=""):
+def randomCircuit(circuit="random", nRandomGates=100, possibleGates=["h", "cnot", "x", "t", "ccnot"], nQubits=3, printStateVector=False, printCircuit=False, printRunTimes = False, runQiskit=True, runCustom=True, saveFPGAProgram=False, FPGAProgramName=""):
     if runQiskit:
         qiskitQC = QiskitQCSimulator(nQubits)
     if runCustom:
@@ -70,7 +70,7 @@ def Benchmark(circuit="random", nRandomGates=100, possibleGates=["h", "cnot", "x
 
     return qiskitTime, customTime
 
-def groversAlgorithm3Benchmark():
+def groversAlgorithm():
     customQC = CustomQCSimulator(3)
     qiskitQC = QiskitQCSimulator(3)
     simulations = [customQC, qiskitQC]
@@ -127,12 +127,3 @@ def groversAlgorithm3Benchmark():
 
     else:
         print("Closing...")
-
-Benchmark(nRandomGates=300, nQubits=27, possibleGates=["h", "cnot", "x", "t"], saveFPGAProgram=False, FPGAProgramName="benchmarkProgram", printStateVector=False, printRunTimes=True, runQiskit=True, runCustom=False)
-        
-# https://algassert.com/quirk#circuit={%22cols%22:[[%22H%22,%22H%22,%22H%22],[1,%22%E2%80%A2%22,%22X%22],[1,1,%22Z^%C2%BC%22],[1,1,%22Z^%C2%BC%22],[1,1,%22Z^%C2%BC%22],[%22%E2%80%A2%22,1,%22X%22],[1,1,%22Z^%C2%BC%22],[1,%22%E2%80%A2%22,%22X%22],[1,1,%22Z^%C2%BC%22],[1,1,%22Z^%C2%BC%22],[1,1,%22Z^%C2%BC%22],[%22%E2%80%A2%22,1,%22X%22],[1,%22Z^%C2%BC%22,%22Z^%C2%BC%22],[1,1,%22H%22],[%22%E2%80%A2%22,%22X%22],[1,%22Z^%C2%BC%22],[1,%22Z^%C2%BC%22],[1,%22Z^%C2%BC%22],[%22Z^%C2%BC%22],[%22%E2%80%A2%22,%22X%22],[%22X%22],[%22H%22,%22H%22],[%22X%22,%22X%22,%22X%22],[1,1,%22H%22],[%22%E2%80%A2%22,%22%E2%80%A2%22,%22X%22],[1,1,%22H%22],[%22X%22,%22X%22,%22X%22],[%22H%22,%22H%22,%22H%22]]}
-#groversAlgorithm3Benchmark()
-#
-
-
-
