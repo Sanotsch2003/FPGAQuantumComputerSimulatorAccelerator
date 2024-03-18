@@ -1,8 +1,12 @@
 import threading
+import serial
 import time
 import sys
-from tools import convertToComplex, getSerialPort, sendByte, uploadProgram
+from QBridge.tools import convertToComplex, getSerialPort, sendByte, uploadProgram
+import pathlib
 
+ROOT_DIR = pathlib.Path(__file__).parent
+FPGAProgramsPath = ROOT_DIR / pathlib.Path("FPGAPrograms")
 
 helpInfo = "Commands: \n" \
             "exit: exit the program\n" \
@@ -35,36 +39,48 @@ def waitForSerialData(showEntireStateVector, roundingThreshold = 0.00000001):
                 transmitting = False
                 i = 0
 
-        if port.in_waiting:
-            if not transmitting:
-                #new line
-                print("\n")
-                print("Start of data")
-                transmitting = True
-            data = port.read(port.in_waiting)
-            last_data_time = time.time()
+        try: 
+            if port.in_waiting:
+                if not transmitting:
+                    #new line
+                    print("\n")
+                    print("Start of data")
+                    transmitting = True
+                data = port.read(port.in_waiting)
+                last_data_time = time.time()
 
-            for byte in data:
-                    byte = format(byte, '08b')
-                    if byte == "00000001": # start byte
-                        current_number_bit_string = ""
+                for byte in data:
+                        byte = format(byte, '08b')
+                        if byte == "00000001": # start byte
+                            current_number_bit_string = ""
 
-                    elif byte == "10000001": # end byte
-                        if len(current_number_bit_string) == 70:
-                            current_number_bit_string = current_number_bit_string[0:64]
+                        elif byte == "10000001": # end byte
+                            if len(current_number_bit_string) == 70:
+                                current_number_bit_string = current_number_bit_string[0:64]
 
-                            c = convertToComplex(current_number_bit_string, roundingThreshold)
-                            if c.real != 0 or showEntireStateVector:
-                                print(i, c)
-                                pass
-                            i += 1
+                                c = convertToComplex(current_number_bit_string, roundingThreshold)
+                                if c.real != 0 or showEntireStateVector:
+                                    print(i, c)
+                                    pass
+                                i += 1
 
-                    else:
-                        current_number_bit_string += byte[0:7]
+                        else:
+                            current_number_bit_string += byte[0:7]
 
-def terminalInteraction():
+        except serial.SerialException as e:
+            print(f"Error reading data: {e}")
+
+def terminalInteraction(baudRate = 460800):
     global port
     global terminate
+    connected = False
+    port, portname = getSerialPort(baudRate=baudRate)
+    if port is not None:
+        print(f"Connected to {portname} with baud rate {port.baudrate}")
+        connected = True
+    else:
+        print("No serial port found, please connect the FPGA and type <connect baudrate> to connect")
+
     while True:
         userInput = input("Enter command: ")
 
@@ -94,9 +110,10 @@ def terminalInteraction():
         elif userInput.split(" ")[0] == "upload":
             if connected:
                 fileName = userInput.split(" ")[1]
-                uploadProgram(port, fileName)
+                uploadProgram(port, FPGAProgramsPath, fileName)
             else:
                 print("Not connected to FPGA")
+        
         elif userInput.split(" ")[0] == "getRunTime":
             if connected:
                 commandLength = len(userInput.split(" "))
@@ -119,19 +136,14 @@ def terminalInteraction():
                 print("Not connected to FPGA")
 
         elif userInput.split(" ")[0] == "connect":
-            if connected:
-                print("Already connected to FPGA")
+            port, portname = getSerialPort(baudRate)
+            if port is None:
+                print("No serial port found, please connect the FPGA and type <connect baudrate> to connect")
             else:
-                baudRate = int(userInput.split(" ")[1])
-                port, portname = getSerialPort(baudRate)
-                if port is None:
-                    print("No serial port found, please connect the FPGA and type <connect baudrate> to connect")
-                else:
-                    print(f"Connected to {portname} with baud rate {baudRate}")
-                    connected = True
+                print(f"Connected to {portname} with baud rate {baudRate}")
+                connected = True
 
-def FPGAInterface(showEntireStateVector = False, roundingThreshold = 0.00000001):
-
+def FPGAInterface(showEntireStateVector = False, roundingThreshold = 0.00000001, baudRate = 460800):
     print("Welcome to the Quantum Bridge terminal interface")
     print("Type 'help' for a list of commands")
 
@@ -139,7 +151,7 @@ def FPGAInterface(showEntireStateVector = False, roundingThreshold = 0.00000001)
     read_thread.daemon = True
     read_thread.start()
 
-    write_thread = threading.Thread(target=terminalInteraction, args=())
+    write_thread = threading.Thread(target=terminalInteraction, args=(baudRate,))
     write_thread.daemon = True
     write_thread.start()
 
@@ -148,5 +160,4 @@ def FPGAInterface(showEntireStateVector = False, roundingThreshold = 0.00000001)
 
     sys.exit()
 
-
-FPGAInterface(showEntireStateVector=False, roundingThreshold=0.00000001)
+FPGAInterface(showEntireStateVector=False, roundingThreshold=0.00000001, baudRate=460800)
