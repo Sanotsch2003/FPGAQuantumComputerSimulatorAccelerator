@@ -1,7 +1,7 @@
 from Simulation import QiskitQCSimulator, CustomQCSimulator, FPGAQCCompiler, QuantumCircuit
 import numpy as np
 
-def randomCircuit(circuit="random", nRandomGates=100, possibleGates=["h", "cnot", "x", "t", "ccnot"], nQubits=3, printStateVector=False, printCircuit=False, printRunTimes = False, runQiskit=True, runCustom=True, saveFPGAProgram=False, FPGAProgramName=""):
+def randomCircuit(nRandomGates=100, possibleGates=["h", "cnot", "x", "t", "ccnot"], nQubits=3, printStateVector=False, printCircuit=False, printRunTimes = False, runQiskit=True, runCustom=True, saveFPGAProgram=False, FPGAProgramName=""):
     if runQiskit:
         qiskitQC = QiskitQCSimulator(nQubits)
     if runCustom:
@@ -14,24 +14,17 @@ def randomCircuit(circuit="random", nRandomGates=100, possibleGates=["h", "cnot"
         qCircuit = QuantumCircuit(nQubits)
 
 
-    if circuit == "random":
-        if saveFPGAProgram:
-            FPGAqcCompiler.createRandomCircuit(nRandomGates, possibleGates)
-            circuit = FPGAqcCompiler.circuit
-        else:
-            qCircuit.createRandomCircuit(nRandomGates, possibleGates)
-            circuit = qCircuit.circuit
-        
-        if runQiskit:
-            qiskitQC.circuit = circuit
-        if runCustom:
-            customQC.circuit = circuit
-
+    if saveFPGAProgram:
+        FPGAqcCompiler.createRandomCircuit(nRandomGates, possibleGates)
+        circuit = FPGAqcCompiler.circuit
     else:
-        if runQiskit:
-            qiskitQC.loadCircuit(circuit)
-        if runCustom:
-            customQC.loadCircuit(circuit)
+        qCircuit.createRandomCircuit(nRandomGates, possibleGates)
+        circuit = qCircuit.circuit
+    
+    if runQiskit:
+        qiskitQC.circuit = circuit
+    if runCustom:
+        customQC.circuit = circuit
 
     if runQiskit:
         qiskitTime = qiskitQC.run()
@@ -127,3 +120,6 @@ def groversAlgorithm():
 
     else:
         print("Closing...")
+
+
+randomCircuit(nRandomGates=30, nQubits=28, possibleGates=["h", "cnot", "x", "t"], runCustom=False, printRunTimes=True)
