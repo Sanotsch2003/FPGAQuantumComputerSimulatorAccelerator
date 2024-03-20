@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-03-20T12:32:27.205Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15" etag="FU2MulP5iRlBidf25n78" version="24.0.7" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-20T12:33:20.941Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15" etag="vd4v_CUpvV-_-QWj0khP" version="24.0.7" type="github">
   <diagram name="Page-1" id="mfj5ObScFYbmNDHJe4dQ">
-    <mxGraphModel dx="800" dy="489" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="876" dy="535" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -26,12 +26,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="v_P1SrSjxpbax4tQQ7hH-8" value="V_a_in" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;labelBackgroundColor=default;fontColor=default;" edge="1" parent="1" source="v_P1SrSjxpbax4tQQ7hH-1">
-          <mxGeometry relative="1" as="geometry">
+          <mxGeometry x="0.2" relative="1" as="geometry">
             <mxPoint x="315.1578947368421" y="400" as="targetPoint" />
             <Array as="points">
               <mxPoint x="315" y="390" />
               <mxPoint x="315" y="390" />
             </Array>
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="v_P1SrSjxpbax4tQQ7hH-9" value="Recheneinheit" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#FF3333;" vertex="1" parent="1">
