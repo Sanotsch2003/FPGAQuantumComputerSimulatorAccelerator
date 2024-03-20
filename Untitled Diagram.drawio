@@ -1,9 +1,39 @@
-<mxfile host="app.diagrams.net" modified="2024-03-20T10:52:35.117Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15" version="24.0.7" etag="hav-qqBAybWullHAZK1t" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-20T11:03:55.380Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15" etag="v-_jtxs9vOVl_0ACrZ9u" version="24.0.7" type="github">
   <diagram name="Page-1" id="L5z7G1MLdmV6tcJb1Ozl">
-    <mxGraphModel>
+    <mxGraphModel dx="1947" dy="771" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="xqdPf7vg9-mfppOpUybL-18" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="308" y="30.5" width="778" height="199" as="geometry" />
+        </mxCell>
+        <mxCell id="xqdPf7vg9-mfppOpUybL-2" value="Kontrolleinheit" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="283" y="307" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xqdPf7vg9-mfppOpUybL-4" value="Recheneinheit 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="335" y="60" width="147" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="xqdPf7vg9-mfppOpUybL-8" value="Zustandsvektor-Speicher" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="508.5" y="453" width="377" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="xqdPf7vg9-mfppOpUybL-10" value="Recheneinheit 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="541" y="58" width="147" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="xqdPf7vg9-mfppOpUybL-13" value="UART-Schnittstelle" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-15" y="407" width="229" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="xqdPf7vg9-mfppOpUybL-14" value="Speicher-Controller" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="617" y="307" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xqdPf7vg9-mfppOpUybL-15" value="Programmspeicher" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-8" y="28.75" width="222" height="202.5" as="geometry" />
+        </mxCell>
+        <mxCell id="xqdPf7vg9-mfppOpUybL-19" value="…" style="text;strokeColor=none;fillColor=none;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="746" y="119" width="55" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xqdPf7vg9-mfppOpUybL-21" value="Recheneinheit n" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="853" y="60" width="147" height="144" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
