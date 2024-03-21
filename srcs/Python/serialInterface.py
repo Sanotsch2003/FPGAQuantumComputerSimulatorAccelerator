@@ -8,6 +8,8 @@ import serial
 ROOT_DIR = pathlib.Path(__file__).parent
 FPGAProgramsPath = ROOT_DIR / pathlib.Path("FPGAPrograms") # Path to the FPGA programs
 
+testVariable = 0
+
 roundingThreshold = 0.000000001 # rounding threshold for complex numbers
 showEntireStateVector = False # Set to True to only show non-zero elements
 DEFAULT_BAUD_RATE = 460800 # Default baud rate for serial communication
