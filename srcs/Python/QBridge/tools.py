@@ -1,9 +1,8 @@
-
 import serial
 import serial.tools.list_ports
-from tqdm import tqdm
+import time
 import pathlib
-
+from tqdm import tqdm
 
 
 def convertToDecimal(binary_string, roundingThreshold = 0.00000001):
@@ -30,12 +29,9 @@ def convertToComplex(binary_string, roundingThreshold = 0.00000001):
     c = complex(real, imaginary)
     return c
 
-def getSerialPort(baudRate = 9600):
+def getSerialPorts(baudRate = 9600):
     ports = serial.tools.list_ports.comports(include_links=True)
-    if len(ports) == 0:
-        return None, None
-    else:
-        return serial.Serial(ports[0].device, baudRate, timeout=1),  ports[0].device
+    return [serial.Serial(port.device, baudRate, timeout=1) for port in ports],  [port.device for port in ports]
 
 def sendByte(port, byte):
     try:
@@ -43,8 +39,50 @@ def sendByte(port, byte):
     except serial.SerialException as e:
         print(f"Error sending data: {e}")
 
-def fileLength(filePath):
-    with filePath.open() as f:
+def readSerial(port, showEntireStateVector):
+    time.sleep(1)
+
+    i = 0
+    current_number_bit_string = ""
+    last_data_time = time.time()
+    transmitting = False
+
+    while True:
+        if time.time() - last_data_time > 0.5:
+            if transmitting:
+                print("End of data")
+                transmitting = False
+                i = 0
+
+        if port.in_waiting:
+            if not transmitting:
+                #new line
+                print("\n")
+                print("Start of data")
+                transmitting = True
+            data = port.read(port.in_waiting)
+            last_data_time = time.time()
+
+            for byte in data:
+                    byte = format(byte, '08b')
+                    if byte == "00000001": # start byte
+                        current_number_bit_string = ""
+
+                    elif byte == "10000001": # end byte
+                        if len(current_number_bit_string) == 70:
+                            current_number_bit_string = current_number_bit_string[0:64]
+
+                            c = convertToComplex(current_number_bit_string)
+                            if (c.real > 0.001 or c.real < -0.001) or showEntireStateVector:
+                                print(i, c)
+                                pass
+                            i += 1
+
+                    else:
+                        current_number_bit_string += byte[0:7]
+
+def file_len(filePath):
+    with open(filePath) as f:
         for i, l in enumerate(f):
             pass
     return i + 1
@@ -58,8 +96,8 @@ def uploadProgram(port, filepath, filename):
     try:
         sendByte(port = port, byte = int(StartEndByte, 2).to_bytes(1, byteorder='big')) #send start byte
         print(f"Opening file {filename}...")
-        with filePath.open('r') as file:
-            total_lines = fileLength(filePath)
+        with open(filePath, 'r') as file:
+            total_lines = file_len(filePath)
             for line in tqdm(file, total=total_lines, desc="Uploading"):
                 byte = line.strip().split(" --")[0]
                 try:
@@ -67,7 +105,7 @@ def uploadProgram(port, filepath, filename):
                     byte_data = byte_value.to_bytes(1, byteorder='big')
                     sendByte(port = port, byte = byte_data)
 
-                except ValueError as e:
+                except Exception as e:
                     print(f"Error converting binary string to byte: {e}")
 
         sendByte(port = port, byte = int(StartEndByte, 2).to_bytes(1, byteorder='big')) #send end byte
