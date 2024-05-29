@@ -1,0 +1,138 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Wed May 29 14:16:48 2024
+| Host         : Jonas-PC running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file quantumProcessor_control_sets_placed.rpt
+| Design       : quantumProcessor
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    60 |
+|    Minimum number of control sets                        |    60 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   197 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    60 |
+| >= 0 to < 4        |    10 |
+| >= 4 to < 6        |     8 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     4 |
+| >= 10 to < 12      |     3 |
+| >= 12 to < 14      |     2 |
+| >= 14 to < 16      |    13 |
+| >= 16              |    20 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              48 |           19 |
+| No           | No                    | Yes                    |              25 |           12 |
+| No           | Yes                   | No                     |             127 |           47 |
+| Yes          | No                    | No                     |             289 |          144 |
+| Yes          | No                    | Yes                    |             106 |           33 |
+| Yes          | Yes                   | No                     |            1088 |          469 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-----------------------------+-----------------------------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
+|         Clock Signal        |                             Enable Signal                             |                    Set/Reset Signal                   | Slice Load Count | Bel Load Count | Bels / Slice |
++-----------------------------+-----------------------------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
+|  clk_generator/inst/clk_100 | bootloader_inst/data_reg[7]_i_1__3_n_0                                |                                                       |                1 |              1 |         1.00 |
+|  clk_generator/inst/clk_100 | bootloader_inst/data_reg[3]_i_1__3_n_0                                |                                                       |                1 |              1 |         1.00 |
+|  clk_generator/inst/clk_100 | bootloader_inst/data_reg[5]_i_1__3_n_0                                |                                                       |                1 |              1 |         1.00 |
+|  clk_generator/inst/clk_100 | bootloader_inst/data_reg[2]_i_1__3_n_0                                |                                                       |                1 |              1 |         1.00 |
+|  clk_generator/inst/clk_100 | bootloader_inst/data_reg[1]_i_1__3_n_0                                |                                                       |                1 |              1 |         1.00 |
+|  clk_generator/inst/clk_100 | bootloader_inst/data_reg[6]_i_1__3_n_0                                |                                                       |                1 |              1 |         1.00 |
+|  clk_generator/inst/clk_100 | bootloader_inst/data_reg[4]_i_1__3_n_0                                |                                                       |                1 |              1 |         1.00 |
+|  clk_generator/inst/clk_100 | bootloader_inst/data_reg[0]_i_1__3_n_0                                |                                                       |                1 |              1 |         1.00 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/core_indices_out[27]_i_2_n_0                      |                                                       |                1 |              1 |         1.00 |
+|  clk_generator/inst/clk_100 | uartTransmitter_inst/tx3_out                                          |                                                       |                1 |              1 |         1.00 |
+|  clk_generator/inst/clk_100 | controlUnit_inst/target_qubit_out0                                    | bootloader_inst/w_reset_reg_0                         |                1 |              4 |         4.00 |
+|  clk_generator/inst/clk_100 | bootloader_inst/current_state7_out                                    | bootloader_inst/bit_counter[3]_i_1__0_n_0             |                1 |              4 |         4.00 |
+|  clk_generator/inst/clk_100 | uartTransmitter_inst/tick_counter                                     | controlUnit_inst/uartTransmit_reset                   |                2 |              4 |         2.00 |
+|  clk_generator/inst/clk_100 | uartTransmitter_inst/packet_counter[3]_i_1_n_0                        | controlUnit_inst/uartTransmit_reset                   |                2 |              4 |         2.00 |
+|  clk_generator/inst/clk_100 | controlUnit_inst/control_qubit_out[3]_i_1_n_0                         | bootloader_inst/w_reset_reg_0                         |                2 |              4 |         2.00 |
+|  clk_generator/inst/clk_100 | controlUnit_inst/execution_cycles0                                    | bootloader_inst/w_reset_reg_0                         |                2 |              4 |         2.00 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/FSM_onehot_initialization_cycles[3]_i_2_n_0       | controlUnit_inst/ram_controller_reset_reg_0           |                1 |              4 |         4.00 |
+|  clk_generator/inst/clk_100 | controlUnit_inst/nQubits_out0                                         | bootloader_inst/w_reset_reg_0                         |                1 |              4 |         4.00 |
+|  clk_generator/inst/clk_100 | bootloader_inst/tick_counter                                          | bootloader_inst/tick_counter[7]_i_1__0_n_0            |                3 |              8 |         2.67 |
+|  clk_generator/inst/clk_100 | uartTransmitter_inst/tick_counter0                                    | controlUnit_inst/SR[0]                                |                3 |              8 |         2.67 |
+|  clk_generator/inst/clk_100 | controlUnit_inst/op_code_reg0                                         | bootloader_inst/w_reset_reg_0                         |                3 |              8 |         2.67 |
+|  clk_generator/inst/clk_100 | uartTransmitter_inst/shift_reg[8]_i_1_n_0                             |                                                       |                4 |              9 |         2.25 |
+|  clk_generator/inst/clk_100 | controlUnit_inst/target_matrix0                                       | bootloader_inst/w_reset_reg_0                         |                7 |             10 |         1.43 |
+|  clk_generator/inst/clk_100 | bootloader_inst/program_memory_address_reg                            | bootloader_inst/program_memory_address_reg[9]_i_1_n_0 |                3 |             10 |         3.33 |
+|  clk_generator/inst/clk_100 | controlUnit_inst/program_counter0                                     | bootloader_inst/w_reset_reg_0                         |                3 |             10 |         3.33 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/core_indices_out[13]_i_2_n_0                      | RAM_controller_inst/core_indices_out[13]_i_1_n_0      |                5 |             13 |         2.60 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/core_indices_out[27]_i_2_n_0                      | RAM_controller_inst/core_indices_out[27]_i_1_n_0      |                4 |             13 |         3.25 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_9[0]        |                8 |             14 |         1.75 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_7[0]        |                7 |             14 |         2.00 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_4[0]        |               12 |             14 |         1.17 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_11[0]       |                9 |             14 |         1.56 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/times_read_from_ram                               | controlUnit_inst/ram_controller_reset_reg_0           |                4 |             14 |         3.50 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/times_written_to_ram                              | controlUnit_inst/ram_controller_reset_reg_0           |                4 |             14 |         3.50 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/current_index[0]_i_1_n_0                          |                                                       |                4 |             14 |         3.50 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_6[0]        |                6 |             14 |         2.33 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_2[0]        |               11 |             14 |         1.27 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_5[0]        |                7 |             14 |         2.00 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_8[0]        |                7 |             14 |         2.00 |
+|  clk_generator/inst/clk_100 | controlUnit_inst/ram_address_read0                                    | bootloader_inst/w_reset_reg_0                         |                3 |             15 |         5.00 |
+|  clk_generator/inst/clk_100 | controlUnit_inst/memory_address_reg0                                  | bootloader_inst/w_reset_reg_0                         |                3 |             15 |         5.00 |
+|  clk_generator/inst/clk_100 | timer_inst/overflow_reg                                               | bootloader_inst/w_timer_reset                         |                4 |             16 |         4.00 |
+|  clk_generator/inst/clk_100 | controlUnit_inst/timer_count_enable                                   | bootloader_inst/w_timer_reset                         |                4 |             16 |         4.00 |
+|  clk_generator/inst/clk_200 |                                                                       |                                                       |                9 |             18 |         2.00 |
+|  clk_generator/inst/clk_100 |                                                                       | bootloader_inst/w_reset_reg_0                         |               12 |             25 |         2.08 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/E[0]                                              | controlUnit_inst/ram_controller_reset                 |                6 |             28 |         4.67 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/core_write_addresses_to_temp_cache_en_reg[0]_0[0] | controlUnit_inst/ram_controller_reset                 |                8 |             28 |         3.50 |
+|  clk_generator/inst/clk_100 |                                                                       |                                                       |               10 |             30 |         3.00 |
+|  clk_generator/inst/clk_200 |                                                                       | controlUnit_inst/ram_controller_reset_reg_0           |               20 |             51 |         2.55 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_12[0]       |               23 |             64 |         2.78 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_3[0]        |               18 |             64 |         3.56 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/cache_write_data_en[0]                            | controlUnit_inst/ram_controller_reset                 |               22 |             64 |         2.91 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/cache_write_data_en[1]                            | controlUnit_inst/ram_controller_reset                 |               31 |             64 |         2.06 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/core_cache_write_data_en_reg[0]_0[0]              | controlUnit_inst/ram_controller_reset                 |               42 |             64 |         1.52 |
+|  clk_generator/inst/clk_200 | RAM_controller_inst/core_cache_write_data_en_reg[1]_0[0]              | controlUnit_inst/ram_controller_reset                 |               53 |             64 |         1.21 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_1[0]        |               24 |             64 |         2.67 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 | controlUnit_inst/ram_controller_reset_reg_10[0]       |               22 |             64 |         2.91 |
+|  clk_generator/inst/clk_200 |                                                                       | controlUnit_inst/ram_controller_reset                 |               27 |             76 |         2.81 |
+|  clk_generator/inst/clk_200 | generate_cores[1].core/w_write_addresses_to_output_cache__0           | controlUnit_inst/ram_controller_reset                 |               66 |            156 |         2.36 |
+|  clk_generator/inst/clk_200 | generate_cores[0].core/w_write_addresses_to_output_cache__0           | controlUnit_inst/ram_controller_reset                 |               55 |            156 |         2.84 |
+|  clk_generator/inst/clk_200 | controlUnit_inst/E[0]                                                 |                                                       |              126 |            256 |         2.03 |
++-----------------------------+-----------------------------------------------------------------------+-------------------------------------------------------+------------------+----------------+--------------+
+
+

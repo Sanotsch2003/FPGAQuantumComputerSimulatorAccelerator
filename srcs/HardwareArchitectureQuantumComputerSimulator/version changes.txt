@@ -1,0 +1,26 @@
+Version 1.0
+
+- can apply x, t, hadamard to target qubit and calculate state vector
+- can send calculated state vector via uart to receiver
+
+Version 2.0
+
+- added functionality to apply gates as controlled gates (benutzt bei Regionalwettberb Jugend Forscht)
+
+
+Version 3.0
+- state Vector can be reset after sent via uart
+- added Bootloader to program Processor
+- Added Python software to write Program to Processor (Serial interface with terminal Commands to send individual bytes or entire Programs)
+
+Version 3.1
+
+- removed unnecessary clock cycles in some instructions
+- design improvements (reset functions)
+- added functionality to overclock processor (operates now at 200Mhz instead of 100Mhz)
+
+Version 4.0
+
+-added multithreading
+-> Ram controller added, possibility to change number of cores dynamically
+-> adjusted instruction set

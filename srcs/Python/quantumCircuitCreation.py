@@ -10,8 +10,12 @@ FPGAProgramsPath = ROOT_DIR / pathlib.Path("FPGAPrograms") # Path to the FPGA pr
 circuit = QuantumCircuit(nQubits=2) # create a quantum circuit with 2 qubits
 
 # create your circuit here by changing the following code
-circuit.h(0)
-circuit.cnot(1, 0)
+
+# example circuit: Grovers Algorithm
+for i in range(2):
+    circuit.h(i)
+
+
 
 
 #uncomment the following line to create a random circuit with 10 Gates

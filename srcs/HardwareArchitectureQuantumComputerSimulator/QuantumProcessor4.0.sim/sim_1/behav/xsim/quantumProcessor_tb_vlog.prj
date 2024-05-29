@@ -1,0 +1,10 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../QuantumProcessor4.0.ip_user_files/ipstatic" \
+"../../../../QuantumProcessor4.0.gen/sources_1/ip/clockGenerator/clockGenerator_clk_wiz.v" \
+"../../../../QuantumProcessor4.0.gen/sources_1/ip/clockGenerator/clockGenerator.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

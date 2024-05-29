@@ -1,0 +1,7 @@
+0.7
+2020.2
+Oct 13 2023
+20:47:58
+C:/Users/Jonas/Nextcloud/Jugend Forscht/Simulation von Quantencomputern/Code/Versions/QuantumProcessor4.0/QuantumProcessor4.0.sim/sim_1/synth/func/xsim/glbl.v,1697210495,verilog,,,,glbl,,,,,,,,
+C:/Users/Jonas/Nextcloud/Jugend Forscht/Simulation von Quantencomputern/Code/Versions/QuantumProcessor4.0/QuantumProcessor4.0.sim/sim_1/synth/func/xsim/quantumProcessor_tb_func_synth.vhd,1709999459,vhdl,,,,adresstempcache;adresstempcache_4;alu;alu_6;bootloader;clockgenerator;clockgenerator_clk_wiz;controlunit;corecache;corecache_1;corecache_10;corecache_2;corecache_3;corecache_7;corecache_8;corecache_9;processingcore;processingcore_0;programmemory;quantumprocessor;ramcontroller;statememory;timer;uarttransmitter;updateaandbcache;updateaandbcache_5,,,,,,,,
+C:/Users/Jonas/Nextcloud/Jugend Forscht/Simulation von Quantencomputern/Code/Versions/QuantumProcessor4.0/QuantumProcessor4.0.srcs/sim_1/new/testbench.vhd,1709999428,vhdl,,,,quantumprocessor_tb,,,,,,,,

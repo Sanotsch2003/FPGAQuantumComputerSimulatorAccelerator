@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"quantumProcessor_tb_func_synth.vhd" \
+"../../../../../QuantumProcessor4.0.srcs/sim_1/new/testbench.vhd" \
+
+# Do not sort compile order
+nosort
